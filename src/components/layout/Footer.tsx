@@ -5,10 +5,29 @@ export function Footer() {
   const navigate = useNavigate();
 
   const scrollTo = (id: string) => {
-    navigate('/');
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    const doScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 80;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    };
+
+    if (window.location.pathname === '/') {
+      doScroll();
+    } else {
+      navigate('/');
+      const tryScroll = (attempts: number) => {
+        const el = document.getElementById(id);
+        if (el) {
+          doScroll();
+        } else if (attempts > 0) {
+          setTimeout(() => tryScroll(attempts - 1), 100);
+        }
+      };
+      setTimeout(() => tryScroll(10), 100);
+    }
   };
 
   return (

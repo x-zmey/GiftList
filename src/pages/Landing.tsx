@@ -133,7 +133,7 @@ function Hero() {
                 <div className="p-4 space-y-3">
                   {[
                     { name: 'KitchenAid Stand Mixer', price: '$379.99', store: 'Amazon', status: 'available', img: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=100&h=100&fit=crop&q=80' },
-                    { name: 'Le Creuset Dutch Oven', price: '$419.95', store: 'Crate & Barrel', status: 'purchased', img: 'https://images.unsplash.com/photo-1585442245948-a4c31e5e2a46?w=100&h=100&fit=crop&q=80' },
+                    { name: 'Le Creuset Dutch Oven', price: '$419.95', store: 'Crate & Barrel', status: 'purchased', img: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=100&h=100&fit=crop&q=80' },
                     { name: 'Brooklinen Sheet Set', price: '$178.00', store: 'Brooklinen', status: 'available', img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=100&h=100&fit=crop&q=80' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 transition-colors">
@@ -346,7 +346,7 @@ function Showcase() {
                   <div className="relative grid grid-cols-3 gap-2 w-[85%]">
                     {[
                       { img: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=100&h=100&fit=crop&q=80', p: '$379' },
-                      { img: 'https://images.unsplash.com/photo-1585442245948-a4c31e5e2a46?w=100&h=100&fit=crop&q=80', p: '$419' },
+                      { img: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=100&h=100&fit=crop&q=80', p: '$419' },
                       { img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=100&h=100&fit=crop&q=80', p: '$178' },
                     ].map((item, i) => (
                       <div key={i} className="bg-white rounded-lg p-1.5 shadow-md">

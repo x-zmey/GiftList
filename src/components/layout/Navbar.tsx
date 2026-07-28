@@ -18,19 +18,33 @@ export function Navbar() {
     navigate('/');
   };
 
+  const doScroll = useCallback((sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      const offset = 80; // fixed navbar height + padding
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, []);
+
   const scrollToSection = useCallback((sectionId: string) => {
     setMobileOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
-      setTimeout(() => {
+      // wait for page to render before scrolling
+      const tryScroll = (attempts: number) => {
         const el = document.getElementById(sectionId);
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+        if (el) {
+          doScroll(sectionId);
+        } else if (attempts > 0) {
+          setTimeout(() => tryScroll(attempts - 1), 100);
+        }
+      };
+      setTimeout(() => tryScroll(10), 100);
     } else {
-      const el = document.getElementById(sectionId);
-      el?.scrollIntoView({ behavior: 'smooth' });
+      doScroll(sectionId);
     }
-  }, [location.pathname, navigate]);
+  }, [location.pathname, navigate, doScroll]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200/50">
